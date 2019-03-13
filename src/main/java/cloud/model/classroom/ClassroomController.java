@@ -89,21 +89,6 @@ public class ClassroomController extends BaseController {
         return new Result("SUCCESS", "Delete classroom");
     }
 
-    @GetMapping(value = { "/classroom/get/{roomName}" })
-    public Result get(@PathVariable("roomName") String roomName) {
-
-        if (isEmpty(roomName)) {
-            return new Result("FAIL", "roomName cannot be empty");
-        }
-
-        if (!classroomService.existByRoomName(roomName)) {
-            return new Result("FAIL", "The classroom does not exist");
-        }
-
-        Classroom classroom = classroomService.findByRoomName(roomName);
-        return new Result("SUCCESS", "Get classroom detail", classroom);
-    }
-
     @GetMapping(value = { "/classroom/get/{macAddress}" })
     public Result get(@PathVariable("macAddress") String macAddress) {
 
@@ -119,8 +104,38 @@ public class ClassroomController extends BaseController {
         return new Result("SUCCESS", "Get classroom detail", classroom);
     }
 
-    @GetMapping(value = { "/classroom/getWeeklySchedule/{roomName}" })
-    public Result getWeeklySchedule(@PathVariable("roomName") String roomName) {
+    @GetMapping(value = { "/classroom/getByName/{roomName}" })
+    public Result getByName(@PathVariable("roomName") String roomName) {
+
+        if (isEmpty(roomName)) {
+            return new Result("FAIL", "roomName cannot be empty");
+        }
+
+        if (!classroomService.existByRoomName(roomName)) {
+            return new Result("FAIL", "The classroom does not exist");
+        }
+
+        Classroom classroom = classroomService.findByRoomName(roomName);
+        return new Result("SUCCESS", "Get classroom detail", classroom);
+    }
+
+    @GetMapping(value = { "/classroom/getWeeklySchedule/{macAddress}" })
+    public Result getWeeklySchedule(@PathVariable("macAddress") String macAddress) {
+
+        if (isEmpty(macAddress)) {
+            return new Result("FAIL", "macAddress cannot be empty");
+        }
+
+        if (!classroomService.existByMacAddress(macAddress)) {
+            return new Result("FAIL", "Classroom not exist");
+        }
+
+        String[][] weeklySchedule = classroomService.getWeeklySchedule(macAddress);
+        return new Result("SUCCESS", "Get classroom detail", weeklySchedule);
+    }
+
+    @GetMapping(value = { "/classroom/getWeeklyScheduleByName/{roomName}" })
+    public Result getWeeklyScheduleByName(@PathVariable("roomName") String roomName) {
 
         if (isEmpty(roomName)) {
             return new Result("FAIL", "roomName cannot be empty");
@@ -130,7 +145,7 @@ public class ClassroomController extends BaseController {
             return new Result("FAIL", "Classroom not exist");
         }
 
-        String[][] weeklySchedule = classroomService.getWeeklySchedule(roomName);
+        String[][] weeklySchedule = classroomService.getWeeklyScheduleByName(roomName);
         return new Result("SUCCESS", "Get classroom detail", weeklySchedule);
     }
 

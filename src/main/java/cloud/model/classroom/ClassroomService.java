@@ -49,7 +49,17 @@ public class ClassroomService {
         classroomRepository.deleteByRoomName(roomName);
     }
 
-    public String[][] getWeeklySchedule(String roomName) {
+    public String[][] getWeeklyScheduleByName(String roomName) {
+        Iterable<Section> sections = sectionService.findAllByRoomName(roomName);
+        String[][] results = new String[8][12];
+        for (Section section : sections) {
+            results[section.getDay()][section.getPeriod()] = section.getCourseName();
+        }
+        return results;
+    }
+
+    public String[][] getWeeklySchedule(String macAddress) {
+        String roomName= classroomRepository.findByMacAddress(macAddress).roomName;
         Iterable<Section> sections = sectionService.findAllByRoomName(roomName);
         String[][] results = new String[8][12];
         for (Section section : sections) {
