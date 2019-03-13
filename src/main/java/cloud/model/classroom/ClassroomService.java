@@ -25,12 +25,20 @@ public class ClassroomService {
         return classroomRepository.findByRoomName(roomName) != null;
     }
 
+    public boolean existByMacAddress(String macAddress) {
+        return classroomRepository.findByMacAddress(macAddress) != null;
+    }
+
     public void save(Classroom classroom) {
         classroomRepository.save(classroom);
     }
 
     public Classroom findByRoomName(String roomName) {
         return classroomRepository.findByRoomName(roomName);
+    }
+
+    public Classroom findByMacAddress(String macAddress) {
+        return classroomRepository.findByMacAddress(macAddress);
     }
 
     public Iterable<Classroom> findAll() {

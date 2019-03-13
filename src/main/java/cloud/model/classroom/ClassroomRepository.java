@@ -6,5 +6,7 @@ public interface ClassroomRepository extends CrudRepository<Classroom, Long> {
 
     public Classroom findByRoomName(String roomName);
 
+    public Classroom findByMacAddress(String macAddress);
+
     public void deleteByRoomName(String roomName);
 }

@@ -104,6 +104,21 @@ public class ClassroomController extends BaseController {
         return new Result("SUCCESS", "Get classroom detail", classroom);
     }
 
+    @GetMapping(value = { "/classroom/get/{macAddress}" })
+    public Result get(@PathVariable("macAddress") String macAddress) {
+
+        if (isEmpty(macAddress)) {
+            return new Result("FAIL", "macAddress cannot be empty");
+        }
+
+        if (!classroomService.existByMacAddress(macAddress)) {
+            return new Result("FAIL", "The classroom does not exist");
+        }
+
+        Classroom classroom = classroomService.findByRoomName(macAddress);
+        return new Result("SUCCESS", "Get classroom detail", classroom);
+    }
+
     @GetMapping(value = { "/classroom/getWeeklySchedule/{roomName}" })
     public Result getWeeklySchedule(@PathVariable("roomName") String roomName) {
 
