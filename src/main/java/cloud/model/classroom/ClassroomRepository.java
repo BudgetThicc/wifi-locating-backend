@@ -16,5 +16,5 @@ public interface ClassroomRepository extends CrudRepository<Classroom, Long> {
     @Modifying
     @Query("update Classroom c set c = ?1 where c.roomName = ?2")
     @Transactional
-    public Classroom updateByRoomName(Classroom classroom,String roomName);
+    public void updateByRoomName(Classroom classroom,String roomName);
 }
