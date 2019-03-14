@@ -60,18 +60,18 @@ public class ClassroomController extends BaseController {
         Classroom oldClassroom = classroomService.findByRoomName(newClassroom.roomName);
 
         if (!isEmpty(newClassroom.macAddress)) {
-            oldClassroom.setMacAddress(newClassroom.macAddress);
+            oldClassroom.macAddress=newClassroom.macAddress;
         }
 
         if (!isEmpty(newClassroom.deskType)) {
-            oldClassroom.setDeskType(newClassroom.deskType);
+            oldClassroom.deskType=newClassroom.deskType;
         }
 
         if (newClassroom.capacity >= 0) {
-            oldClassroom.setCapacity(newClassroom.capacity);
+            oldClassroom.capacity=newClassroom.capacity;
         }
 
-        return new Result("SUCCESS", "Update classroom", newClassroom);
+        return new Result("SUCCESS", "Update classroom", oldClassroom);
     }
 
     @GetMapping(value = { "/classroom/delete/{roomName}" })
