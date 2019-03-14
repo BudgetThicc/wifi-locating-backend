@@ -15,6 +15,10 @@ public class ClassroomController extends BaseController {
     @Resource
     private ClassroomService classroomService;
 
+
+    @Resource
+    private ClassroomRepository classroomRepository;
+
     @Resource
     private SectionService sectionService;
 
@@ -70,6 +74,8 @@ public class ClassroomController extends BaseController {
         if (newClassroom.capacity >= 0) {
             oldClassroom.capacity=newClassroom.capacity;
         }
+
+        classroomRepository.updateByRoomName(oldClassroom,newClassroom.roomName );
 
         return new Result("SUCCESS", "Update classroom", oldClassroom);
     }
