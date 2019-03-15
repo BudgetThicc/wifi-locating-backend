@@ -15,7 +15,6 @@ public class ClassroomController extends BaseController {
     @Resource
     private ClassroomService classroomService;
 
-
     @Resource
     private ClassroomRepository classroomRepository;
 
@@ -155,4 +154,10 @@ public class ClassroomController extends BaseController {
         return new Result("SUCCESS", "Get classroom detail", weeklySchedule);
     }
 
+    @PostMapping(value = { "/classroom/navigation" })
+    public Result getWeeklyScheduleByName(@PathVariable("roomName") String startPoint,@PathVariable("roomName") String endPoint) {
+        Map map=new Map("./RoomInformation.csv","./EdgeInformation.csv",16);
+        int[] res=map.dijkstra(Integer.parseInt(startPoint),Integer.parseInt(endPoint));
+        return new Result("SUCCESS", "Get classroom Navigation", res);
+    }
 }
