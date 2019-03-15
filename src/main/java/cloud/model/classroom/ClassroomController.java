@@ -155,7 +155,7 @@ public class ClassroomController extends BaseController {
     }
 
     @PostMapping(value = { "/classroom/navigation" })
-    public Result getWeeklyScheduleByName(@PathVariable("startPoint") String startPoint,@PathVariable("endPoint") String endPoint) {
+    public Result getNavigation(@PathVariable("startPoint") String startPoint,@PathVariable("endPoint") String endPoint) {
         Map map=new Map("./RoomInformation.csv","./EdgeInformation.csv",16);
         int[] res=map.dijkstra(Integer.parseInt(startPoint),Integer.parseInt(endPoint));
         return new Result("SUCCESS", "Get classroom Navigation", res);
