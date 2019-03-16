@@ -33,7 +33,7 @@ public class SectionController extends BaseController {
             return new Result("FAIL", "period not in range (1~11)");
         }
 
-        if (day < 1 || day > 5) {
+        if (day < 1 || day > 7) {
             return new Result("FAIL", "day not in range (1~7), 1: Monday");
         }
 
@@ -61,7 +61,7 @@ public class SectionController extends BaseController {
             return new Result("FAIL", "period not in range (1~11)");
         }
 
-        if (section.getDay() < 1 || section.getDay() > 5) {
+        if (section.getDay() < 1 || section.getDay() > 7) {
             return new Result("FAIL", "day not in range (1~7), 1: Monday");
         }
 
