@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 @RestController
 public class SectionController extends BaseController {
 
+    ;
     @Resource
     private SectionService sectionService;
 

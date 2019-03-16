@@ -105,7 +105,7 @@ public class ClassroomController extends BaseController {
             return new Result("FAIL", "The classroom does not exist");
         }
 
-        Classroom classroom = classroomService.findByRoomName(macAddress);
+        Classroom classroom = classroomService.findByMacAddress(macAddress);
         return new Result("SUCCESS", "Get classroom detail", classroom);
     }
 
