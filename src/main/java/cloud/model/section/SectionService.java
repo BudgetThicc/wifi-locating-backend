@@ -35,7 +35,7 @@ public class SectionService {
     }
 
     public Section findByDayAndPeriodAndName(int day, int period, String roomName){
-        return sectionRepository.findByDayAndPeriodAndName(day,period,roomName);
+        return sectionRepository.findByDayAndPeriodAndRoomName(day,period,roomName);
     }
 
 }
