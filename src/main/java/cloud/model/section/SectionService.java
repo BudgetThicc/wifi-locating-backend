@@ -22,9 +22,6 @@ public class SectionService {
         sectionRepository.save(section);
     }
 
-    public boolean existByDayAndPeriod(int day, int period) {
-        return sectionRepository.findByDayAndPeriod(day, period) != null;
-    }
 
     public void deleteAllByRoomName(String roomName) {
         sectionRepository.deleteAllByRoomName(roomName);
@@ -36,6 +33,10 @@ public class SectionService {
 
     public Iterable<Section> findAllByRoomName(String roomName) {
         return sectionRepository.findAllByRoomName(roomName);
+    }
+
+    public Section findByDayAndPeriodAndName(int day, int period, String roomName){
+        return sectionRepository.findByDayAndPeriodAndName(day,period,roomName);
     }
 
 }

@@ -22,6 +22,26 @@ public class SectionController extends BaseController {
         return new Result("SUCCESS", "find all sections", sectionService.findAll());
     }
 
+    @PostMapping(value = { "/section/get" })
+    public Result get(@RequestParam("roomName") String roomName,@RequestParam("day") int day,@RequestParam("period") int period) {
+
+        if (isEmpty(roomName)) {
+            return new Result("FAIL", "roomName cannot be empty");
+        }
+
+        if (period < 1 || period > 11) {
+            return new Result("FAIL", "period not in range (1~11)");
+        }
+
+        if (day < 1 || day > 5) {
+            return new Result("FAIL", "day not in range (1~7), 1: Monday");
+        }
+
+        Section section=sectionService.findByDayAndPeriodAndName(day,period,roomName);
+        System.out.println(section);
+        return new Result("SUCCESS", "section Detail", section);
+    }
+
     @PostMapping(value = { "/section/create" })
     public Result create(@ModelAttribute Section section) {
 
@@ -43,10 +63,6 @@ public class SectionController extends BaseController {
 
         if (section.getDay() < 1 || section.getDay() > 5) {
             return new Result("FAIL", "day not in range (1~7), 1: Monday");
-        }
-
-        if (sectionService.existByDayAndPeriod(section.getDay(), section.getPeriod())) {
-            return new Result("FAIL", "This period has already been used");
         }
 
         sectionService.save(section);

@@ -12,5 +12,5 @@ public interface SectionRepository extends CrudRepository<Section, Long> {
 
     public Iterable<Section> deleteAllByRoomName(String courseName);
 
-    public Section findByDayAndPeriod(int day, int period);
+    public Section findByDayAndPeriodAndName(int day, int period, String roomName);
 }
