@@ -106,6 +106,7 @@ public class ClassroomController extends BaseController {
         }
 
         Classroom classroom = classroomService.findByMacAddress(macAddress);
+        System.out.println(classroom);
         return new Result("SUCCESS", "Get classroom detail", classroom);
     }
 
