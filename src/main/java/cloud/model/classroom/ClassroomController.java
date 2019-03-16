@@ -156,9 +156,9 @@ public class ClassroomController extends BaseController {
     }
 
     @PostMapping(value = { "/classroom/navigation" })
-    public Result getNavigation(@RequestParam("startPoint") String startPoint,@RequestParam("endPoint") String endPoint) {
-        Map map=new Map("/RoomInformation.csv","/EdgeInformation.csv",16);
-        int[] res=map.dijkstra(Integer.parseInt(startPoint),Integer.parseInt(endPoint));
+    public Result getNavigation(@RequestParam("startPoint") int startPoint,@RequestParam("endPoint") int endPoint,@RequestParam("floor") int floor) {
+        Map map=new Map(floor);
+        int[] res=map.dijkstra(startPoint,endPoint);
         return new Result("SUCCESS", "Get classroom Navigation", res);
     }
 }
