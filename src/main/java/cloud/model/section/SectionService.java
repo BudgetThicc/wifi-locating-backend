@@ -22,7 +22,6 @@ public class SectionService {
         sectionRepository.save(section);
     }
 
-
     public void deleteAllByRoomName(String roomName) {
         sectionRepository.deleteAllByRoomName(roomName);
     }
