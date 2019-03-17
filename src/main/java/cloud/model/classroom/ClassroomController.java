@@ -110,8 +110,8 @@ public class ClassroomController extends BaseController {
         return new Result("SUCCESS", "Get classroom detail", classroom);
     }
 
-    @GetMapping(value = { "/classroom/getByName/{roomName}" })
-    public Result getByName(@PathVariable("roomName") String roomName) {
+    @GetMapping(value = { "/classroom/getByName" })
+    public Result getByName(@RequestParam("roomName") String roomName) {
 
         if (isEmpty(roomName)) {
             return new Result("FAIL", "roomName cannot be empty");
