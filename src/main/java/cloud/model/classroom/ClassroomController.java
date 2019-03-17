@@ -110,7 +110,7 @@ public class ClassroomController extends BaseController {
         return new Result("SUCCESS", "Get classroom detail", classroom);
     }
 
-    @GetMapping(value = { "/classroom/getByName" })
+    @PostMapping(value = { "/classroom/getByName" })
     public Result getByName(@RequestParam("roomName") String roomName) {
 
         if (isEmpty(roomName)) {
